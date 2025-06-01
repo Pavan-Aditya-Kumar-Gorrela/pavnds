@@ -10,8 +10,10 @@ def df_summary(df):
     print(df.dtypes)
     print("\n--- Missing Values ---")
     print(df.isnull().sum()[df.isnull().sum()>0])
-    print("\n--- Summary Statistics ---")
-    print(df.describe(include='all'))
+    print("\n--- Summary Statistics (Numerical) ---")
+    print(df.select_dtypes(include='number').describe())
+    print("\n--- Summary Statistics (Categorical) ---")
+    print(df.select_dtypes(include='object').describe())
 
 def missing_report(df):
     return df.isnull().mean().sort_values(ascending= False)
